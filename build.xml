@@ -20,7 +20,7 @@
           <jar destfile="${target.dir}/surf-standalone-jar-with-dependencies.jar" update="true" basedir="${lib.dir}" includes="crossdomain.xml"/>
 
           <!-- copy the surf.war file for both discovery and full into the respective standalone jars. the files have to be named as surf.war, so copy into java.io.tmpdir first -->
-          <copy overwrite="true" file="${surf.target.dir}/surf-0.0.1-SNAPSHOT.war" tofile="${java.io.tmpdir}/surf.war"/>
+          <copy overwrite="true" file="${surf.target.dir}/surf.war" tofile="${java.io.tmpdir}/surf.war"/>
           <jar update="true" basedir="${java.io.tmpdir}" destfile="${target.dir}/surf-standalone-jar-with-dependencies.jar" includes="surf.war"/>
 
           <!-- rename the files and move them to the current dir -->
