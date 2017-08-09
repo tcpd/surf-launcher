@@ -1,0 +1,9 @@
+/target/
+.settings/
+.classpath
+.project
+/test-output/
+.DS_store
+*~
+*.swp
+*.swo

@@ -1,0 +1,43 @@
+<launch4jConfig>
+  <headerType>gui</headerType>
+  <jar>../muse-standalone.jar</jar>
+  <outfile>../muse.exe</outfile>
+  <errTitle>Muse</errTitle>
+  <chdir>.</chdir>
+  <icon>muse-icon.ico</icon>
+  <jre>
+    <minVersion>1.6.0</minVersion>
+	<maxHeapSize>2048</maxHeapSize>
+  </jre>
+<!--
+  <splash>
+    <file>muse-icon.png</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>10</timeout>
+    <timeoutErr>false</timeoutErr>
+  </splash>
+-->
+<singleInstance>
+    <mutexName>Muse</mutexName>
+    <windowTitle>Muse</windowTitle>
+</singleInstance> 
+<versionInfo>
+	<fileVersion>0.9.9.0</fileVersion>
+	<txtFileVersion>0.9.9.0</txtFileVersion>
+	<fileDescription>Memories Using Email</fileDescription>
+	<copyright>Stanford Mobisocial Lab</copyright>
+	<productVersion>0.9.9.0</productVersion>
+	<txtProductVersion>0.9.9.0</txtProductVersion>
+	<productName>Muse</productName>
+	<companyName>Stanford University</companyName>
+	<internalName>Muse</internalName>
+    	<originalFilename>muse.exe</originalFilename>
+</versionInfo>
+<messages>
+	<startupErr>Sorry, Muse has encountered an error while starting up.</startupErr>
+	<bundledJreErr>Sorry, Muse has encountered an error with the Bundled Java runtime software.</bundledJreErr>
+	<jreVersionErr>Sorry, Muse has encountered an error with the Java version on this system. Please install the latest release of Java.</jreVersionErr>
+	<launcherErr>Sorry, Muse has encountered a launcher error on this system.</launcherErr>
+</messages>
+
+</launch4jConfig>
