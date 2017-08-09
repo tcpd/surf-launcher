@@ -102,7 +102,7 @@ public class TomcatMain {
 	static final int TIMEOUT_SECS = 60;
 	static Context SURF_WEBAPP; // this will be used by shutdown thread to find sessions and close them down cleanly
 
-	static String SETTINGS_DIR = null;
+	static String SETTINGS_DIR = System.getProperty ("user.home");
 
 	private static final int MB = 1024 * 1024;
 	final static int DEFAULT_PORT = 9099;
