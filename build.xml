@@ -1,54 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="epadd" default="release" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+<project name="surf" default="release" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 
 	<description>
-        ePADD Standalone application build script
+        Surf Standalone application build script
     </description>
     <property name="lib.dir" location="./lib" />
     <property name="target.dir" location="./target" />
-    <property name="epadd.target.dir" location="../epadd/target" /> <!-- this is where the epadd.war files are stored -->
+    <property name="surf.target.dir" location="../surf/target" /> <!-- this is where the surf.war files are stored -->
     <property environment="env" />
 
     <target name="standalone-jar">
-         <!-- this targets updates the standalone jar for both discovery and full. -->
-
-         <!-- first, add the stuff the launcher needs, like icons etc. (stored in lib.dir) -->
-         <jar destfile="${target.dir}/epadd-standalone-jar-with-dependencies.jar" update="true" basedir="${lib.dir}" includes="index.html,log4j.properties,splash-image.png,muse-icon.png,edu/stanford/ejalbert/launching/windows/windowsConfig.properties"/>
-
-          <!-- make a replica of what we have so far, for discovery -->
-          <copy file="${target.dir}/epadd-standalone-jar-with-dependencies.jar" tofile="${target.dir}/epadd-discovery-standalone-jar-with-dependencies.jar"/>
-
-          <!-- add crossdomain.xml only to full epadd-standalone, not to discovery -->
-          <jar destfile="${target.dir}/epadd-standalone-jar-with-dependencies.jar" update="true" basedir="${lib.dir}" includes="crossdomain.xml"/>
-
-          <!-- copy the epadd.war file for both discovery and full into the respective standalone jars. the files have to be named as epadd.war, so copy into java.io.tmpdir first -->
-          <copy overwrite="true" file="${epadd.target.dir}/epadd-0.0.1-SNAPSHOT.war" tofile="${java.io.tmpdir}/epadd.war"/>
-          <jar update="true" basedir="${java.io.tmpdir}" destfile="${target.dir}/epadd-standalone-jar-with-dependencies.jar" includes="epadd.war"/>
-
-          <copy overwrite="true" file="${epadd.target.dir}/epadd-discovery-0.0.1-SNAPSHOT.war" tofile="${java.io.tmpdir}/epadd.war"/>
-          <jar update="true" basedir="${java.io.tmpdir}" destfile="${target.dir}/epadd-discovery-standalone-jar-with-dependencies.jar" includes="epadd.war"/>
-
-          <!-- rename the files and move them to the current dir -->
-          <move file="${target.dir}/epadd-standalone-jar-with-dependencies.jar" tofile="epadd-standalone.jar"/>
-          <move file="${target.dir}/epadd-discovery-standalone-jar-with-dependencies.jar" tofile="epadd-discovery-standalone.jar"/>
-    </target>
-
-    <target name="standalone-jar-no-discovery"> 
          <!-- target for quick building -->
          <!-- this targets updates the standalone jar for both discovery and full. -->
 
          <!-- first, add the stuff the launcher needs, like icons etc. (stored in lib.dir) -->
-         <jar destfile="${target.dir}/epadd-standalone-jar-with-dependencies.jar" update="true" basedir="${lib.dir}" includes="index.html,log4j.properties,splash-image.png,muse-icon.png,edu/stanford/ejalbert/launching/windows/windowsConfig.properties"/>
+         <jar destfile="${target.dir}/surf-standalone-jar-with-dependencies.jar" update="true" basedir="${lib.dir}" includes="index.html,log4j.properties,splash-image.png,muse-icon.png,edu/stanford/ejalbert/launching/windows/windowsConfig.properties"/>
 
-          <!-- add crossdomain.xml only to full epadd-standalone, not to discovery -->
-          <jar destfile="${target.dir}/epadd-standalone-jar-with-dependencies.jar" update="true" basedir="${lib.dir}" includes="crossdomain.xml"/>
+          <!-- add crossdomain.xml only to full surf-standalone, not to discovery -->
+          <jar destfile="${target.dir}/surf-standalone-jar-with-dependencies.jar" update="true" basedir="${lib.dir}" includes="crossdomain.xml"/>
 
-          <!-- copy the epadd.war file for both discovery and full into the respective standalone jars. the files have to be named as epadd.war, so copy into java.io.tmpdir first -->
-          <copy overwrite="true" file="${epadd.target.dir}/epadd-0.0.1-SNAPSHOT.war" tofile="${java.io.tmpdir}/epadd.war"/>
-          <jar update="true" basedir="${java.io.tmpdir}" destfile="${target.dir}/epadd-standalone-jar-with-dependencies.jar" includes="epadd.war"/>
+          <!-- copy the surf.war file for both discovery and full into the respective standalone jars. the files have to be named as surf.war, so copy into java.io.tmpdir first -->
+          <copy overwrite="true" file="${surf.target.dir}/surf-0.0.1-SNAPSHOT.war" tofile="${java.io.tmpdir}/surf.war"/>
+          <jar update="true" basedir="${java.io.tmpdir}" destfile="${target.dir}/surf-standalone-jar-with-dependencies.jar" includes="surf.war"/>
 
           <!-- rename the files and move them to the current dir -->
-          <move file="${target.dir}/epadd-standalone-jar-with-dependencies.jar" tofile="epadd-standalone.jar"/>
+          <move file="${target.dir}/surf-standalone-jar-with-dependencies.jar" tofile="surf-standalone.jar"/>
     </target>
 
 	<target name="exe">
@@ -65,7 +41,7 @@
 		    <os family="unix"/>
 		</condition>
 		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
-		<launch4j configFile="${launch4j.dir}/epadd.xml" />
+		<launch4j configFile="${launch4j.dir}/surf.xml" />
 	</target>
 
 	<target name="exe-discovery">
@@ -76,7 +52,7 @@
 		    <matches string="${os.version}" pattern="^(10.8|10.9|10.10|10.11|10.12|10.13)." />
 		</condition>
 		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
-		<launch4j configFile="${launch4j.dir}/epadd-discovery.xml" />
+		<launch4j configFile="${launch4j.dir}/surf-discovery.xml" />
 	</target>
 
 
@@ -85,54 +61,27 @@
          classpath="${lib.dir}/appbundler-1.0.jar" /> 
 
 <target name="macapp">
-    <mkdir dir="dist/epadd" /> <!-- dist/epadd because the vol. name on the dmg needs to be epadd and not dist. -->
-    <bundleapp outputdirectory="dist/epadd"
-        name="epadd"
-        displayname="epadd"
-        identifier="components.epadd"
-	icon="lib/epadd.icns"
-        mainclassname="edu.stanford.epadd.launcher.TomcatMain">
+    <mkdir dir="dist/surf" /> <!-- dist/surf because the vol. name on the dmg needs to be surf and not dist. -->
+    <bundleapp outputdirectory="dist/surf"
+        name="surf"
+        displayname="surf"
+        identifier="components.surf"
+	icon="lib/surf.icns"
+        mainclassname="in.edu.ashoka.surf.launcher.TomcatMain">
 	<runtime dir="${env.JAVA_HOME}" />
-        <classpath file="epadd-standalone.jar" />
+        <classpath file="surf-standalone.jar" />
 	<option value="-Xmx4g"/>
-	<option value="-splash:epadd-standalone.jar:splash-image.png"/>
+	<option value="-splash:surf-standalone.jar:splash-image.png"/>
    </bundleapp>
   <exec executable="hdiutil">
         <arg value="create"/>
-        <arg value="epadd.dmg"/>
+        <arg value="surf.dmg"/>
         <arg value="-srcfolder"/>
-        <arg value="./dist/epadd"/>
+        <arg value="./dist/surf"/>
         <arg value="-ov"/>
   </exec>
 </target>
 
-<target name="macapp-discovery">
-    <mkdir dir="dist/epadd-discovery" /> <!-- dist/ePADD becuase the vol. name on the dmg needs to be Muse and not dist. -->
-    <bundleapp outputdirectory="dist/epadd-discovery"
-        name="epadd-discovery"
-        displayname="epadd-discovery"
-        identifier="components.epadd"
-	icon="lib/epadd.icns"
-        mainclassname="edu.stanford.epadd.launcher.TomcatMain">
-	<runtime dir="${env.JAVA_HOME}" />
-        <classpath file="epadd-discovery-standalone.jar" />
-	<option value="-Xmx2g"/>
-	<option value="-Depadd.mode.discovery=1"/>
-	<option value="-splash:epadd-discovery-standalone.jar:splash-image.png"/>
-   </bundleapp>
-  <exec executable="hdiutil">
-        <arg value="create"/>
-        <arg value="epadd-discovery.dmg"/>
-        <arg value="-srcfolder"/>
-        <arg value="./dist/epadd-discovery"/>
-        <arg value="-ov"/>
-  </exec>
-
-</target>
-
-<target name="both-mac" depends="macapp,macapp-discovery"></target>
-<target name="both-exe" depends="exe,exe-discovery"></target>
-
-<target name="release" depends="both-mac,both-exe"></target>
+<target name="release" depends="macapp,exe"></target>
 
 </project>
