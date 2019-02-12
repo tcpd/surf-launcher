@@ -31,9 +31,10 @@
 		<condition property="launch4j.dir" value="launch4j-3.3-macos10.7">
 		    <matches string="${os.version}" pattern="^10.[234567]." />
 		</condition>
-		<condition property="launch4j.dir" value="launch4j-macos10.8">
-		    <matches string="${os.version}" pattern="^(10.8|10.9|10.10|10.11|10.12|10.13)." />
-		</condition>
+        <condition property="launch4j.dir" value="launch4j-3.12-macos">
+            <matches string="${os.version}" pattern="^(10.12|10.13|10.14|10.15|10.16)" />
+        </condition>
+
 		<condition property="launch4j.dir" value="launch4j-3.8-win32">
 		    <os family="windows"/>
 		</condition>
@@ -49,7 +50,7 @@
 		    <matches string="${os.version}" pattern="^10.[234567]." />
 		</condition>
 		<condition property="launch4j.dir" value="launch4j-macos10.8">
-		    <matches string="${os.version}" pattern="^(10.8|10.9|10.10|10.11|10.12|10.13)." />
+		    <matches string="${os.version}" pattern="^(10.8|10.9|10.10|10.11|10.12|10.13|10.14)." />
 		</condition>
 		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
 		<launch4j configFile="${launch4j.dir}/surf-discovery.xml" />
