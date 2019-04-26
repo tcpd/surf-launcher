@@ -1,0 +1,43 @@
+<launch4jConfig>
+  <headerType>gui</headerType>
+  <jar>../surf-standalone.jar</jar>
+  <outfile>../surf.exe</outfile>
+  <errTitle>Surf</errTitle>
+  <chdir>.</chdir>
+  <icon>epadd.ico</icon>
+  <jre>
+    <minVersion>1.7.0</minVersion>
+	<maxHeapSize>4096</maxHeapSize>
+  </jre>
+<!--
+  <splash>
+    <file>muse-icon.png</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>10</timeout>
+    <timeoutErr>false</timeoutErr>
+  </splash>
+-->
+<singleInstance>
+    <mutexName>Surf</mutexName>
+    <windowTitle>Surf</windowTitle>
+</singleInstance> 
+<versionInfo>
+	<fileVersion>0.3.5.1</fileVersion>
+	<txtFileVersion>2014-03-30</txtFileVersion>
+	<fileDescription>Surf</fileDescription>
+	<copyright>Ashoka University</copyright>
+	<productVersion>0.3.5.1</productVersion>
+	<txtProductVersion>2017-08-17</txtProductVersion>
+	<productName>Surf</productName>
+	<companyName>Ashoka University</companyName>
+	<internalName>Surf</internalName>
+    	<originalFilename>surf.exe</originalFilename>
+</versionInfo>
+<messages>
+	<startupErr>Sorry, Surf has encountered an error while starting up.</startupErr>
+	<bundledJreErr>Sorry, Surf has encountered an error with the Bundled Java runtime software.</bundledJreErr>
+	<jreVersionErr>Sorry, Surf has encountered an error with the Java version on this system. Please install the latest release of Java.</jreVersionErr>
+	<launcherErr>Sorry, Surf has encountered a launcher error on this system.</launcherErr>
+</messages>
+
+</launch4jConfig>

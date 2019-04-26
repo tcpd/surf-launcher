@@ -1,0 +1,43 @@
+<launch4jConfig>
+  <headerType>gui</headerType>
+  <jar>../epadd-standalone.jar</jar>
+  <outfile>../epadd.exe</outfile>
+  <errTitle>ePADD</errTitle>
+  <chdir>.</chdir>
+  <icon>epadd.ico</icon>
+  <jre>
+    <minVersion>1.7.0</minVersion>
+	<maxHeapSize>65536</maxHeapSize>
+  </jre>
+<!--
+  <splash>
+    <file>muse-icon.png</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>10</timeout>
+    <timeoutErr>false</timeoutErr>
+  </splash>
+-->
+<singleInstance>
+    <mutexName>ePADD</mutexName>
+    <windowTitle>ePADD</windowTitle>
+</singleInstance> 
+<versionInfo>
+	<fileVersion>0.3.5.1</fileVersion>
+	<txtFileVersion>2014-03-30</txtFileVersion>
+	<fileDescription>ePADD</fileDescription>
+	<copyright>Stanford University Libraries</copyright>
+	<productVersion>0.3.5.1</productVersion>
+	<txtProductVersion>2014-03-30</txtProductVersion>
+	<productName>ePADD</productName>
+	<companyName>Stanford University</companyName>
+	<internalName>ePADD</internalName>
+    	<originalFilename>epadd.exe</originalFilename>
+</versionInfo>
+<messages>
+	<startupErr>Sorry, ePADD has encountered an error while starting up.</startupErr>
+	<bundledJreErr>Sorry, ePADD has encountered an error with the Bundled Java runtime software.</bundledJreErr>
+	<jreVersionErr>Sorry, ePADD has encountered an error with the Java version on this system. Please install the latest release of Java.</jreVersionErr>
+	<launcherErr>Sorry, ePADD has encountered a launcher error on this system.</launcherErr>
+</messages>
+
+</launch4jConfig>
